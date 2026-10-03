@@ -1,0 +1,703 @@
+--- START OF FILE index.html ---
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>কাজী মো: অভি | পোর্টফোলিও</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Font: Hind Siliguri -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+    
+    html {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      overflow-x: hidden;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    /* Glassmorphism Classes */
+    .glass-nav {
+      background: rgba(11, 15, 25, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(58, 134, 255, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(58, 134, 255, 0.1);
+    }
+
+    /* Scroll Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Smooth Image Scroll Effect on Hover */
+    .project-img-container {
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .project-img-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 4s ease-in-out;
+      transform: translateY(0);
+    }
+
+    .project-img-container:hover img {
+      transform: translateY(calc(-100% + 240px));
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3a86ff;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2563eb;
+    }
+
+    /* Gradient Background Glows */
+    .bg-glow-1 {
+      background: radial-gradient(circle, rgba(58,134,255,0.15) 0%, rgba(0,0,0,0) 70%);
+    }
+    .bg-glow-2 {
+      background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, rgba(0,0,0,0) 70%);
+    }
+  </style>
+</head>
+<body class="relative">
+
+  <!-- Background Ambient Glows -->
+  <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-glow-1 -z-10 pointer-events-none"></div>
+  <div class="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-glow-2 -z-10 pointer-events-none"></div>
+  <div class="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-glow-1 -z-10 pointer-events-none"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#3a86ff] to-cyan-400">
+        <span id="nav-logo">অভি</span>.dev
+      </a>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8 text-sm font-medium">
+        <a href="#home" class="hover:text-[#3a86ff] transition-colors duration-300">হোম</a>
+        <a href="#about" class="hover:text-[#3a86ff] transition-colors duration-300">পরিচিতি</a>
+        <a href="#portfolio" class="hover:text-[#3a86ff] transition-colors duration-300">পোর্টফোলিও</a>
+        <a href="#contact" class="hover:text-[#3a86ff] transition-colors duration-300">যোগাযোগ</a>
+      </div>
+
+      <div class="hidden md:block">
+        <a href="#contact" class="px-5 py-2.5 rounded-full text-xs font-semibold bg-gradient-to-r from-[#3a86ff] to-indigo-600 hover:opacity-90 transition-all duration-300 shadow-md shadow-[#3a86ff]/20">
+          যোগাযোগ করুন
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden glass-nav border-t border-slate-800 py-6 px-6 space-y-4 absolute top-full left-0 w-full">
+      <a href="#home" class="block py-2 hover:text-[#3a86ff] transition-colors">হোম</a>
+      <a href="#about" class="block py-2 hover:text-[#3a86ff] transition-colors">পরিচিতি</a>
+      <a href="#portfolio" class="block py-2 hover:text-[#3a86ff] transition-colors">পোর্টফোলিও</a>
+      <a href="#contact" class="block py-2 hover:text-[#3a86ff] transition-colors">যোগাযোগ</a>
+      <a href="#contact" class="inline-block w-full text-center py-2.5 rounded-lg bg-gradient-to-r from-[#3a86ff] to-indigo-600">যোগাযোগ করুন</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center pt-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+      
+      <!-- Intro Text Column -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-xs text-[#3a86ff]">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span id="hero-badge">নতুন কাজের জন্য প্রস্তুত</span>
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+          হ্যালো, আমি <br class="hidden sm:inline">
+          <span id="hero-name" class="text-transparent bg-clip-text bg-gradient-to-r from-[#3a86ff] to-cyan-400">কাজী মো: অভি</span>
+        </h1>
+        
+        <div class="text-lg sm:text-2xl text-slate-300 font-medium h-8">
+          আমি একজন <span id="typing-text" class="text-[#3a86ff] border-r-2 border-[#3a86ff] pr-1"></span>
+        </div>
+        
+        <p id="hero-description" class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+          লোডিং হচ্ছে...
+        </p>
+        
+        <!-- Social Media Icons -->
+        <div id="social-links-container" class="flex justify-center lg:justify-start space-x-4 pt-2 text-xl">
+          <!-- Dynamically Injected -->
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
+          <a href="#portfolio" onclick="smoothScrollTo('#portfolio', event)" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#3a86ff] to-indigo-600 text-sm font-semibold hover:scale-105 transition-transform duration-300 shadow-lg shadow-[#3a86ff]/20">
+            আমার প্রজেক্টগুলো দেখুন <i class="fa-solid fa-arrow-right ml-2"></i>
+          </a>
+          <a href="#contact" onclick="smoothScrollTo('#contact', event)" class="px-8 py-3.5 rounded-full border border-[#3a86ff] text-[#3a86ff] text-sm font-semibold hover:scale-105 hover:bg-[#3a86ff]/10 transition-all duration-300 shadow-lg shadow-[#3a86ff]/10">
+            আমার সাথে যোগাযোগ করুন <i class="fa-solid fa-envelope ml-2"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Image Column with Floating Design -->
+      <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
+        <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+          <!-- Glass Background Shape -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#3a86ff]/30 to-purple-600/10 rounded-3xl transform rotate-6 scale-95 transition-transform duration-500 hover:rotate-12"></div>
+          <!-- Profile Image Wrapper -->
+          <div class="absolute inset-0 bg-slate-900 border-2 border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
+            <img id="profile-img" src="" alt="Profile Image" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Skills Section -->
+  <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Bio Column -->
+      <div class="lg:col-span-6 space-y-6 reveal">
+        <h2 class="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#3a86ff] to-cyan-400">
+          আমার সম্পর্কে কিছু কথা
+        </h2>
+        <p id="about-bio" class="text-slate-300 leading-relaxed text-sm sm:text-base">
+          লোডিং হচ্ছে...
+        </p>
+        
+        <!-- Quick Details Info -->
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          <div class="glass-card p-4 rounded-xl">
+            <p class="text-slate-400 text-xs">ইমেইল</p>
+            <p id="about-email" class="font-semibold text-slate-200 text-xs sm:text-sm mt-1 truncate">loading...</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl">
+            <p class="text-slate-400 text-xs">ফোন</p>
+            <p id="about-phone" class="font-semibold text-slate-200 text-xs sm:text-sm mt-1">loading...</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl">
+            <p class="text-slate-400 text-xs">অভিজ্ঞতা</p>
+            <p class="font-semibold text-[#3a86ff] text-xs sm:text-sm mt-1">১+ বছর</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl">
+            <p class="text-slate-400 text-xs">বর্তমান ঠিকানা</p>
+            <p id="about-location" class="font-semibold text-slate-200 text-xs sm:text-sm mt-1 truncate">loading...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Column -->
+      <div class="lg:col-span-6 space-y-6 reveal">
+        <h2 class="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#3a86ff] to-cyan-400">
+          প্রফেশনাল স্কিলসেট
+        </h2>
+        <p class="text-slate-400 text-sm">
+          আমার নিয়মিত ব্যবহৃত কিছু টেকনোলজি ও স্কিল লেভেল নিচে উল্লেখ করা হলো:
+        </p>
+        
+        <!-- Dynamic Skills List -->
+        <div id="skills-container" class="space-y-4 pt-2">
+          <!-- Dynamically Injected Skills -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio / Projects Section -->
+  <section id="portfolio" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center space-y-4 mb-16 reveal">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">আমার সাম্প্রতিক <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3a86ff] to-cyan-400">প্রজেক্টসমূহ</span></h2>
+      <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">কাস্টম কোডিং ও আধুনিক ডিজাইনে তৈরি করা আমার বাস্তবসম্মত কিছু কাজের পোর্টফোলিও নিচে দেওয়া হলো।</p>
+    </div>
+
+    <!-- Grid Layout of Projects -->
+    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto reveal">
+      <!-- Dynamically Injected Project Cards -->
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+      
+      <!-- Contact Info Box -->
+      <div class="lg:col-span-5 flex flex-col justify-between space-y-8 glass-card p-8 rounded-3xl reveal">
+        <div class="space-y-4">
+          <h2 class="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#3a86ff] to-cyan-400">
+            যোগাযোগের ঠিকানা
+          </h2>
+          <p class="text-slate-400 text-sm">
+            যেকোনো ধরণের প্রজেক্ট ডেভেলপমেন্ট বা আলোচনার জন্য নিচের ঠিকানায় অথবা ফর্মটির মাধ্যমে সরাসরি যোগাযোগ করতে পারেন।
+          </p>
+        </div>
+
+        <div class="space-y-6 py-6">
+          <div class="flex items-start space-x-4">
+            <div class="w-10 h-10 rounded-full bg-[#3a86ff]/10 flex items-center justify-center text-[#3a86ff] shrink-0">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+              <p class="text-slate-400 text-xs">ইমেইল করুন</p>
+              <p id="contact-info-email" class="text-slate-200 font-medium text-sm">loading...</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-10 h-10 rounded-full bg-[#3a86ff]/10 flex items-center justify-center text-[#3a86ff] shrink-0">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <p class="text-slate-400 text-xs">সরাসরি কল</p>
+              <p id="contact-info-phone" class="text-slate-200 font-medium text-sm">loading...</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-10 h-10 rounded-full bg-[#3a86ff]/10 flex items-center justify-center text-[#3a86ff] shrink-0">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <p class="text-slate-400 text-xs">অবস্থান</p>
+              <p id="contact-info-address" class="text-slate-200 font-medium text-sm">loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800">
+          <p class="text-xs text-slate-500">মেসেজ সাবমিট করার সাথে সাথেই টেলিগ্রামের মাধ্যমে সরাসরি তা আমার কাছে পৌছে যাবে।</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="lg:col-span-7 glass-card p-8 rounded-3xl reveal">
+        <h3 class="text-2xl font-bold text-slate-200 mb-6">মেসেজ পাঠান</h3>
+        
+        <form id="telegram-contact-form" class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs text-slate-400 mb-2">আপনার নাম *</label>
+              <input type="text" id="form-name" required class="w-full bg-slate-900 border border-slate-800 focus:border-[#3a86ff] text-slate-100 text-sm rounded-xl px-4 py-3 outline-none transition-colors">
+            </div>
+            <div>
+              <label class="block text-xs text-slate-400 mb-2">মোবাইল নম্বর *</label>
+              <input type="tel" id="form-phone" required class="w-full bg-slate-900 border border-slate-800 focus:border-[#3a86ff] text-slate-100 text-sm rounded-xl px-4 py-3 outline-none transition-colors">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs text-slate-400 mb-2">টেলিগ্রাম ইউজার আইডি / ইউজারনেম (ঐচ্ছিক)</label>
+              <input type="text" id="form-telegram" placeholder="@username" class="w-full bg-slate-900 border border-slate-800 focus:border-[#3a86ff] text-slate-100 text-sm rounded-xl px-4 py-3 outline-none transition-colors">
+            </div>
+            <div>
+              <label class="block text-xs text-slate-400 mb-2">ইমেইল ঠিকানা</label>
+              <input type="email" id="form-email" class="w-full bg-slate-900 border border-slate-800 focus:border-[#3a86ff] text-slate-100 text-sm rounded-xl px-4 py-3 outline-none transition-colors">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs text-slate-400 mb-2">আপনার মেসেজ *</label>
+            <textarea id="form-message" rows="4" required class="w-full bg-slate-900 border border-slate-800 focus:border-[#3a86ff] text-slate-100 text-sm rounded-xl px-4 py-3 outline-none transition-colors resize-none"></textarea>
+          </div>
+
+          <button id="submit-btn" type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-[#3a86ff] to-indigo-600 hover:opacity-90 transition-all text-sm font-semibold flex items-center justify-center space-x-2">
+            <span id="submit-btn-text">বার্তা পাঠান</span>
+            <i id="submit-btn-icon" class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Google Map Section -->
+  <section class="px-6 pb-12 max-w-7xl mx-auto reveal">
+    <div class="w-full h-80 rounded-3xl overflow-hidden border border-slate-800 shadow-xl relative">
+      <iframe 
+        id="google-map"
+        src="" 
+        class="w-full h-full border-0 grayscale invert opacity-75 contrast-125" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900/60 bg-slate-950 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p>© ২০২৬ <span id="footer-name">কাজী মো: অভি</span>. সর্বস্বত্ব সংরক্ষিত।</p>
+      <p>ডিজাইন ও ডেভেলপমেন্ট - <span class="text-[#3a86ff]">কাজী মো: অভি</span></p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification System -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none flex flex-col space-y-2"></div>
+
+
+  <!-- Dynamic Data & Logic Integration (JavaScript) -->
+  <script>
+    function smoothScrollTo(selector, event) {
+      if (event) event.preventDefault();
+      const target = document.querySelector(selector);
+      if (!target) return;
+      const navHeight = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 80;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    }
+    const PORTFOLIO_DATA = {
+      personal: {
+        name: "কাজী মো: অভি",
+        title: "প্রফেশনাল ডেভেলপার ও প্রোগ্রামার",
+        bio: "আমি মূলত ওয়েব অ্যাপ্লিকেশন ডিজাইন এবং কাস্টম কোডিং নিয়ে কাজ করা একজন ডেডিকেটেড ডেভেলপার। রিয়েল-ওয়ার্ল্ড প্রজেক্ট ডিজাইন ও ডেভেলপ করতে আমি স্বাচ্ছন্দ্য বোধ করি। আধুনিক UI/UX এবং পরিষ্কার কোডিং স্ট্রাকচারের মাধ্যমে ব্যবহারকারীবান্ধব সলিউশন তৈরি করা আমার অন্যতম লক্ষ্য।",
+        profileImg: "https://i.ibb.co.com/6c62H6gz/IMG-20261003-220212-046.jpg",
+        phone: "+8801902573792",
+        email: "labibovi789@gmail.com",
+        address: "ঢাকা, বাংলাদেশ",
+        typingTexts: ["স্টুডেন্ট", "প্রোগ্রামার", "ভাইব কোডার"]
+      },
+      socials: {
+        facebook: "https://www.facebook.com/share/18dHTF1jaz/",
+        telegram: "https://t.me/itz_ovi1",
+        instagram: "https://www.instagram.com/ar_the_vibe?igsh=YnBwM3FhNDFxNnZq",
+        tiktok: "https://www.tiktok.com/@a.r.ovi7?_r=1&_t=ZS-96jTe6CJVuX"
+      },
+      skills: [
+        { name: "WordPress (Elementor / Divi / Custom Theme)", level: "95%" },
+        { name: "Laravel (PHP Framework)", level: "85%" },
+        { name: "HTML5 / CSS3 / Tailwind CSS", level: "90%" },
+        { name: "JavaScript (Vanilla / ES6)", level: "75%" },
+        { name: "MySQL / Database Design", level: "80%" }
+      ],
+      projects: [
+        {
+          title: "এডুকেশন পোর্টাল প্রজেক্ট",
+          description: "একটি রেসপন্সিভ এবং আধুনিক এডুকেশনাল ওয়েবসাইট ডিজাইন পোর্টাল।",
+          image: "https://i.ibb.co.com/nN0PVLvY/Screenshot-20260522-103027-01.jpg", 
+          liveLink: "https://educationi.netlify.app/",
+          githubLink: "#",
+          tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design"]
+        },
+        {
+          title: "ইজি কিউআর কোড জেনারেটর",
+          description: "সহজেই কাস্টম কিউআর কোড জেনারেট করার জন্য প্রস্তুতকৃত একটি ওয়েব অ্যাপ্লিকেশন।",
+          image: "https://i.ibb.co.com/1Y5rC5td/Screenshot-20260522-134425-01.jpg",
+          liveLink: "https://itz-ovi.github.io/EasyQR/",
+          githubLink: "https://github.com/itz-ovi/EasyQR",
+          tags: ["HTML", "JavaScript", "API Integration", "QR Code Generator"]
+        }
+      ],
+      mapIframeSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14608.272370783857!2d90.40744015!3d23.74488355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b51%3A0x10fe31554e68580!2sDhaka!5e0!3m2!1sen!2sbd!4v1715000000000!5m2!1sen!2sbd",
+      telegram: {
+        botToken: "8933928437:AAHpiwVUg-KtQ6pZA4WjMnHUeEeJHcpYtgw", 
+        chatId: "8110857306"       
+      }
+    };
+
+    /**
+     * Initialization & Render Data
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      // Load Personal Info
+      document.getElementById("nav-logo").textContent = PORTFOLIO_DATA.personal.name.split(" ").pop();
+      document.getElementById("hero-name").textContent = PORTFOLIO_DATA.personal.name;
+      document.getElementById("hero-description").textContent = PORTFOLIO_DATA.personal.bio;
+      document.getElementById("profile-img").src = PORTFOLIO_DATA.personal.profileImg;
+      document.getElementById("footer-name").textContent = PORTFOLIO_DATA.personal.name;
+
+      // Load About details
+      document.getElementById("about-bio").textContent = PORTFOLIO_DATA.personal.bio;
+      document.getElementById("about-email").textContent = PORTFOLIO_DATA.personal.email;
+      document.getElementById("about-phone").textContent = PORTFOLIO_DATA.personal.phone;
+      document.getElementById("about-location").textContent = PORTFOLIO_DATA.personal.address;
+
+      // Load Contact Section Info
+      document.getElementById("contact-info-email").textContent = PORTFOLIO_DATA.personal.email;
+      document.getElementById("contact-info-phone").textContent = PORTFOLIO_DATA.personal.phone;
+      document.getElementById("contact-info-address").textContent = PORTFOLIO_DATA.personal.address;
+
+      // Render Social Media Icons
+      const socialsContainer = document.getElementById("social-links-container");
+      socialsContainer.innerHTML = `
+        <a href="${PORTFOLIO_DATA.socials.facebook}" target="_blank" class="text-slate-400 hover:text-[#3a86ff] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="${PORTFOLIO_DATA.socials.telegram}" target="_blank" class="text-slate-400 hover:text-[#3a86ff] transition-colors"><i class="fa-brands fa-telegram"></i></a>
+        <a href="${PORTFOLIO_DATA.socials.instagram}" target="_blank" class="text-slate-400 hover:text-[#3a86ff] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+        <a href="${PORTFOLIO_DATA.socials.tiktok}" target="_blank" class="text-slate-400 hover:text-[#3a86ff] transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+      `;
+
+      // Render Skills Section
+      const skillsContainer = document.getElementById("skills-container");
+      skillsContainer.innerHTML = PORTFOLIO_DATA.skills.map(skill => `
+        <div class="space-y-2">
+          <div class="flex justify-between text-xs sm:text-sm font-medium">
+            <span class="text-slate-200">${skill.name}</span>
+            <span class="text-[#3a86ff]">${skill.level}</span>
+          </div>
+          <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-[#3a86ff] to-cyan-400 transition-all duration-1000" style="width: ${skill.level}"></div>
+          </div>
+        </div>
+      `).join('');
+
+      // Render Projects
+      const projectsGrid = document.getElementById("projects-grid");
+      projectsGrid.innerHTML = PORTFOLIO_DATA.projects.map(proj => `
+        <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 group">
+          <div class="project-img-container">
+            <img src="${proj.image}" alt="${proj.title}">
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="flex flex-wrap gap-2">
+              ${proj.tags.map(tag => `<span class="px-2.5 py-1 rounded-md bg-[#3a86ff]/10 text-[#3a86ff] text-[10px] font-semibold">${tag}</span>`).join('')}
+            </div>
+            <h3 class="text-xl font-bold text-slate-100 group-hover:text-[#3a86ff] transition-colors">${proj.title}</h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">${proj.description}</p>
+            <div class="flex items-center space-x-4 pt-2">
+              <a href="${proj.liveLink}" target="_blank" class="flex-1 py-2 rounded-xl bg-gradient-to-r from-[#3a86ff]/20 to-[#3a86ff]/10 border border-[#3a86ff]/20 hover:border-[#3a86ff] hover:text-[#3a86ff] text-xs font-semibold text-center transition-all duration-300">
+                <i class="fa-solid fa-arrow-up-right-from-square mr-1.5"></i> লাইভ ডেমো
+              </a>
+              <a href="${proj.githubLink}" target="_blank" class="flex-1 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-semibold text-center transition-all duration-300 text-slate-300">
+                <i class="fa-brands fa-github mr-1.5"></i> কোড / ডিটেইলস
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Map iframe src setup
+      document.getElementById("google-map").src = PORTFOLIO_DATA.mapIframeSrc;
+
+      // Trigger Animations
+      initTypingEffect();
+      initScrollReveal();
+    });
+
+    /**
+     * Typing Effect (টাইপিং ইফেক্ট)
+     */
+    function initTypingEffect() {
+      const typingSpan = document.getElementById("typing-text");
+      const words = PORTFOLIO_DATA.personal.typingTexts;
+      let wordIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function type() {
+        const currentWord = words[wordIndex];
+        if (isDeleting) {
+          typingSpan.textContent = currentWord.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typingSpan.textContent = currentWord.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 40 : 100;
+
+        if (!isDeleting && charIndex === currentWord.length) {
+          isDeleting = true;
+          typeSpeed = 1500; 
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          typeSpeed = 500; 
+        }
+
+        setTimeout(type, typeSpeed);
+      }
+      type();
+    }
+
+    /**
+     * Scroll Reveal Animation (স্ক্রোল অ্যানিমেশন)
+     */
+    function initScrollReveal() {
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, { threshold: 0.1 });
+
+      reveals.forEach(reveal => observer.observe(reveal));
+    }
+
+    /**
+     * Mobile Menu Navigation Handler
+     */
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+    document.querySelectorAll("#mobile-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    });
+
+    /**
+     * Toast System Interface
+     */
+    function showToast(message, type = "success") {
+      const toastContainer = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = `p-4 rounded-2xl glass-card flex items-center space-x-3 pointer-events-auto shadow-lg transition-all duration-500 translate-y-4 opacity-0 border-l-4 ${
+        type === "success" ? "border-l-emerald-500" : "border-l-rose-500"
+      }`;
+      
+      const icon = type === "success" 
+        ? '<i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>' 
+        : '<i class="fa-solid fa-circle-exclamation text-rose-500 text-lg"></i>';
+
+      toast.innerHTML = `
+        ${icon}
+        <span class="text-sm font-medium text-slate-200">${message}</span>
+      `;
+      
+      toastContainer.appendChild(toast);
+
+      // Trigger animation
+      setTimeout(() => {
+        toast.classList.remove("translate-y-4", "opacity-0");
+      }, 50);
+
+      // Self destroy toast after 4s
+      setTimeout(() => {
+        toast.classList.add("translate-y-4", "opacity-0");
+        setTimeout(() => toast.remove(), 500);
+      }, 4000);
+    }
+
+    /**
+     * Telegram Contact Form Integration
+     */
+    const form = document.getElementById("telegram-contact-form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Get Form UI Elements for Animation
+      const submitBtn = document.getElementById("submit-btn");
+      const submitBtnText = document.getElementById("submit-btn-text");
+      const submitBtnIcon = document.getElementById("submit-btn-icon");
+
+      const name = document.getElementById("form-name").value;
+      const phone = document.getElementById("form-phone").value;
+      const telegramUser = document.getElementById("form-telegram").value.trim() || "দেওয়া হয়নি";
+      const email = document.getElementById("form-email").value.trim() || "দেওয়া হয়নি";
+      const message = document.getElementById("form-message").value;
+      const time = new Date().toLocaleString("bn-BD");
+
+      // Telegram Message Formatting (HTML Safe Layout)
+      const textMessage = `<b>🛎️ নতুন যোগাযোগ অনুরোধ!</b>
+━━━━━━━━━━━━━━━━━━━
+<b>👤 নাম:</b> ${name}
+<b>📞 ফোন:</b> ${phone}
+<b>✈️ টেলিগ্রাম:</b> ${telegramUser}
+<b>✉️ ইমেইল:</b> ${email}
+<b>💬 মেসেজ:</b> ${message}
+<b>⏰ সময়:</b> ${time}
+━━━━━━━━━━━━━━━━━━━`;
+
+      const botToken = PORTFOLIO_DATA.telegram.botToken;
+      const chatId = PORTFOLIO_DATA.telegram.chatId;
+
+      if (!botToken || botToken === "YOUR_BOT_TOKEN") {
+        showToast("টেলিগ্রাম বট টোকেন সেটআপ করা নেই। দয়া করে কোড থেকে বট এপিআই আপডেট করুন।", "error");
+        return;
+      }
+
+      // Start Sending Message - UI Loading State Active
+      submitBtn.disabled = true;
+      submitBtn.classList.add("opacity-75", "cursor-not-allowed");
+      submitBtnText.textContent = "পাঠানো হচ্ছে...";
+      submitBtnIcon.className = "fa-solid fa-circle-notch animate-spin";
+
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: textMessage,
+            parse_mode: "HTML"
+          })
+        });
+
+        if (response.ok) {
+          showToast("আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে! আপনাকে ধন্যবাদ।", "success");
+          form.reset();
+        } else {
+          showToast("বার্তা পাঠানো ব্যর্থ হয়েছে। বটের ইনফরমেশন পুনরায় চেক করুন।", "error");
+        }
+      } catch (error) {
+        showToast("নেটওয়ার্ক সমস্যা! অনুগ্রহ করে পরে আবার চেষ্টা করুন।", "error");
+      } finally {
+        // Reset Button UI State
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("opacity-75", "cursor-not-allowed");
+        submitBtnText.textContent = "বার্তা পাঠান";
+        submitBtnIcon.className = "fa-solid fa-paper-plane";
+      }
+    });
+  </script>
+</body>
+</html>

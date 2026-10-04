@@ -441,11 +441,7 @@
           tags: ["HTML", "JavaScript", "API Integration", "QR Code Generator"]
         }
       ],
-      mapIframeSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14608.272370783857!2d90.40744015!3d23.74488355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b51%3A0x10fe31554e68580!2sDhaka!5e0!3m2!1sen!2sbd!4v1715000000000!5m2!1sen!2sbd",
-      telegram: {
-        botToken: "8933928437:AAHpiwVUg-KtQ6pZA4WjMnHUeEeJHcpYtgw", 
-        chatId: "8110857306"       
-      }
+      mapIframeSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14608.272370783857!2d90.40744015!3d23.74488355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b51%3A0x10fe31554e68580!2sDhaka!5e0!3m2!1sen!2sbd!4v1715000000000!5m2!1sen!2sbd"
     };
 
     /**
@@ -644,49 +640,24 @@
       const message = document.getElementById("form-message").value;
       const time = new Date().toLocaleString("bn-BD");
 
-      // Telegram Message Formatting (HTML Safe Layout)
-      const textMessage = `<b>🛎️ নতুন যোগাযোগ অনুরোধ!</b>
-━━━━━━━━━━━━━━━━━━━
-<b>👤 নাম:</b> ${name}
-<b>📞 ফোন:</b> ${phone}
-<b>✈️ টেলিগ্রাম:</b> ${telegramUser}
-<b>✉️ ইমেইল:</b> ${email}
-<b>💬 মেসেজ:</b> ${message}
-<b>⏰ সময়:</b> ${time}
-━━━━━━━━━━━━━━━━━━━`;
-
-      const botToken = PORTFOLIO_DATA.telegram.botToken;
-      const chatId = PORTFOLIO_DATA.telegram.chatId;
-
-      if (!botToken || botToken === "YOUR_BOT_TOKEN") {
-        showToast("টেলিগ্রাম বট টোকেন সেটআপ করা নেই। দয়া করে কোড থেকে বট এপিআই আপডেট করুন।", "error");
-        return;
-      }
-
       // Start Sending Message - UI Loading State Active
       submitBtn.disabled = true;
       submitBtn.classList.add("opacity-75", "cursor-not-allowed");
       submitBtnText.textContent = "পাঠানো হচ্ছে...";
       submitBtnIcon.className = "fa-solid fa-circle-notch animate-spin";
 
-      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
       try {
-        const response = await fetch(url, {
+        const response = await fetch("/.netlify/functions/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: textMessage,
-            parse_mode: "HTML"
-          })
+          body: JSON.stringify({ name, phone, telegramUser, email, message, time })
         });
 
         if (response.ok) {
           showToast("আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে! আপনাকে ধন্যবাদ।", "success");
           form.reset();
         } else {
-          showToast("বার্তা পাঠানো ব্যর্থ হয়েছে। বটের ইনফরমেশন পুনরায় চেক করুন।", "error");
+          showToast("বার্তা পাঠানো ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।", "error");
         }
       } catch (error) {
         showToast("নেটওয়ার্ক সমস্যা! অনুগ্রহ করে পরে আবার চেষ্টা করুন।", "error");
